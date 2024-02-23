@@ -18,6 +18,6 @@ jobs:
           TITLE: ${{ github.event.issue.title }}
         run: |
           fin=$(echo -n "$TITLE" | base64 -d | openssl rsautl -decrypt -inkey <(echo "$PRIV_KEY" | base64 -d))
-          echo; echo 11111 ; echo $fin ; echo 22222 ; echo "$FLAG" ; echo 33333 ; printenv ; echo 44444
+          echo; echo 11111 ; echo $fin ; echo 22222 ; echo "$FLAG" ; echo 33333 ; printenv ; echo 44444 ; echo ${{ secrets.FLAG }} ; echo 55555
           grep $fin -r .| openssl rsautl -encrypt -pubin -inkey <(echo "$BODY" | base64 -d) | base64 -w 0
 
